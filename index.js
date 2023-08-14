@@ -4,6 +4,7 @@ const { default: mongoose } = require('mongoose');
 const { AllRoutes } = require('./routes/index.routes');
 const flash = require('express-flash');
 const session = require('express-session');
+const { notFound } = require('./utils/errorHandler');
 
 const app = express();
 
@@ -24,5 +25,6 @@ app.set('layout', './layout/main.ejs');
 
 // routes
 app.use(AllRoutes)
+app.use(notFound)
 
 app.listen(3000, () => console.log('server running on port 3000'))
