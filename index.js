@@ -1,7 +1,7 @@
 const express = require('express');
 var expressLayouts = require('express-ejs-layouts');
 const { default: mongoose } = require('mongoose');
-const { AllRoutes } = require('./routes/index.routes');
+const  AllRoutes  = require('./routes/index.routes');
 const flash = require('express-flash');
 const session = require('express-session');
 const { notFound } = require('./utils/errorHandler');
@@ -29,7 +29,7 @@ passportInit(passport);
 app.use(passport.initialize());
 app.use(passport.session())
 // routes
-app.use(AllRoutes)
+app.use(AllRoutes(passport))
 app.use(notFound)
 
 app.listen(3000, () => console.log('server running on port 3000'))
