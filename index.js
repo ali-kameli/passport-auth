@@ -5,6 +5,8 @@ const { AllRoutes } = require('./routes/index.routes');
 const flash = require('express-flash');
 const session = require('express-session');
 const { notFound } = require('./utils/errorHandler');
+const passport = require('passport');
+const { passportInit } = require('./passport.config');
 
 const app = express();
 
@@ -22,7 +24,10 @@ app.use(session({
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 app.set('layout', './layout/main.ejs');
-
+// passport
+passportInit(passport);
+app.use(passport.initialize());
+app.use(passport.session())
 // routes
 app.use(AllRoutes)
 app.use(notFound)
